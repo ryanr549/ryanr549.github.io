@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: manjaro
+    runs-on: ubuntu-20.04
 
     # Allow this job to push changes to your repository
     permissions:
