@@ -5,4 +5,5 @@ import preact from '@astrojs/preact';
 export default defineConfig({
 	integrations: [preact()],
 	site: "https://ryanr549.github.io/",
+	base: "ryanr549.github.io",
 });
