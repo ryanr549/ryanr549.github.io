@@ -8,9 +8,9 @@ import BlogPostPreview from '../components/BlogPostPreview.astro';
 // You can write any JavaScript/TypeScript that you'd like here.
 // It will run during the build, but never in the browser.
 // All variables are available to use in the HTML template below.
-let title = 'Example Blog';
-let description = 'The perfect starter for your perfect blog.';
-let permalink = 'https://example.com/';
+let title = "Yu's Blog";
+let description = 'A place for astrophysics and computer, and a bit of music.';
+let permalink = 'https://ryanr549.github.io';
 
 // Data Fetching: List all Markdown posts in the repo.
 
@@ -55,7 +55,7 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 			}
 
 			.latest {
-				font-size: 2.5rem;
+				font-size: 2rem;
 				font-weight: 700;
 			}
 		</style>
