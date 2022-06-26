@@ -12,7 +12,9 @@ description: Just a Hello World Post!
 <Cool name={frontmatter.name} href="https://github.com/ryanr549" client:load />
 
 # A markdown page
-
+```sh
+sudo pacman -Syu
+```
 `a,b,c,d`
 - fast
 - efficient
