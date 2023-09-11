@@ -6,7 +6,7 @@
 title: Ryan's Hideout
 subtitle: ''
 description: ''
-keywords:
+keywords: Linux, Astrophysics
 author: Haoran Yu
 language: zh-cn
 timezone: 'Asia/Shanghai'
@@ -15,7 +15,7 @@ timezone: 'Asia/Shanghai'
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://ryanr549.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:hash.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -32,7 +32,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :catogory/:title # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
