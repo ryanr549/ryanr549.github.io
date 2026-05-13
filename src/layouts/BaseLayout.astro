@@ -34,6 +34,12 @@ const { title, description } = Astro.props;
 		<style>
 			:root {
 				--_placeholder-bg: linear-gradient(transparent, transparent);
+				--bg-image-warm-tint: linear-gradient(
+					140deg,
+					hsla(218, 88%, 70%, 0.36),
+					hsla(228, 78%, 60%, 0.25) 45%,
+					hsla(238, 72%, 50%, 0.18)
+				);
 				--bg-image-main: url('/assets/backgrounds/bg-main-light-800w.jpg');
 				--bg-image-main-curves: url('/assets/backgrounds/bg-main-light.svg');
 				--bg-image-subtle-1: var(--_placeholder-bg);
@@ -48,6 +54,12 @@ const { title, description } = Astro.props;
 			}
 
 			:root.theme-dark {
+				--bg-image-warm-tint: linear-gradient(
+					140deg,
+					hsla(218, 78%, 58%, 0.24),
+					hsla(230, 72%, 50%, 0.18) 45%,
+					hsla(242, 68%, 44%, 0.12)
+				);
 				--bg-image-main: url('/assets/backgrounds/bg-main-dark-800w.jpg');
 				--bg-image-main-curves: url('/assets/backgrounds/bg-main-dark.svg');
 				--bg-svg-blend-mode: darken;
@@ -97,12 +109,14 @@ const { title, description } = Astro.props;
 					/*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
 					/*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
 					/*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+					/*warm tint*/ var(--bg-image-warm-tint) top center/cover no-repeat,
 					/*base*/ var(--gray-999);
 				background-blend-mode: /*noise*/
 					overlay,
 					/*footer*/ var(--bg-blend-mode),
 					/*header1*/ var(--bg-svg-blend-mode),
 					/*header2*/ normal,
+					/*warm tint*/ soft-light,
 					/*base*/ normal;
 			}
 			@media (forced-colors: active) {

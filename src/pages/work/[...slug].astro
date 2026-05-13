@@ -3,7 +3,6 @@ import { type CollectionEntry, getCollection } from 'astro:content';
 
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-import ContactCTA from '../../components/ContactCTA.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
 import Pill from '../../components/Pill.astro';
@@ -33,7 +32,7 @@ const { Content } = await entry.render();
 			<header>
 				<div class="wrapper stack gap-2">
 					<a class="back-link" href="/work/"><Icon icon="arrow-left" /> Work</a>
-					<Hero title={entry.data.title} align="start">
+					<Hero title={entry.data.title} align="start" fluidTitle={true}>
 						<div class="details">
 							<div class="tags">
 								{entry.data.tags.map((t) => <Pill>{t}</Pill>)}
@@ -49,10 +48,20 @@ const { Content } = await entry.render();
 					<div class="content">
 						<Content />
 					</div>
+					{
+						entry.data.gallery && entry.data.gallery.length > 0 && (
+							<div class="image-gallery" aria-label="Additional figures">
+								{entry.data.gallery.map((image, index) => (
+									<figure class="gallery-item">
+										<img src={image.src} alt={image.alt || `${entry.data.title} figure ${index + 1}`} />
+									</figure>
+								))}
+							</div>
+						)
+					}
 				</div>
 			</main>
 		</div>
-		<ContactCTA />
 	</div>
 </BaseLayout>
 
@@ -77,11 +86,18 @@ const { Content } = await entry.render();
 
 	.tags {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 0.5rem;
 	}
 
+	.tags :global(.pill) {
+		font-size: clamp(0.75rem, 3.2vw, var(--text-md));
+		padding: clamp(0.3rem, 1.3vw, 0.5rem) clamp(0.65rem, 2.8vw, 1rem);
+	}
+
 	.description {
-		font-size: var(--text-lg);
+		font-size: clamp(1rem, 3.8vw, var(--text-lg));
 		max-width: 54ch;
 	}
 
@@ -103,10 +119,25 @@ const { Content } = await entry.render();
 	}
 
 	.content :global(img) {
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-sm);
+		border-radius: 0rem;
+		/* box-shadow: var(--shadow-sm); */
 		background: var(--gradient-subtle);
-		border: 1px solid var(--gray-800);
+		/* border: 1px solid var(--gray-800); */
+	}
+
+	.image-gallery {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.gallery-item {
+		margin: 0;
+	}
+
+	.gallery-item img {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	.content :global(blockquote) {
@@ -144,8 +175,17 @@ const { Content } = await entry.render();
 			gap: 2.5rem;
 		}
 
+		.tags {
+			justify-content: flex-start;
+		}
+
 		.content :global(blockquote) {
 			font-size: var(--text-2xl);
+		}
+
+		.image-gallery {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.25rem;
 		}
 	}
 </style>

@@ -5,15 +5,12 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Component Imports
-import CallToAction from '../components/CallToAction.astro';
 import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 // Page section components
-import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
 
 // Content Fetching: List four most recent work projects
@@ -31,24 +28,24 @@ const projects = (await getCollection('work'))
 			<header class="hero">
 				<Hero
 					title="Hello, my name is Haoran Yu"
-                    tagline="I am an Astrophysics graduate student, currently based at University of Science and Technology of China."
+                    tagline="I am an Astrophysics PhD student, currently based at University of Science and Technology of China."
 					align="start"
 				>
-                <i>
+                <!-- <i>
                 <font size=3>For server documentation, go to <a href="https://ecwang-top.github.io">https://ecwang-top.github.io</a></font>
-                </i>
-					<div class="roles">
+                </i> -->
+					<!-- <div class="roles">
 						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
 						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
 						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
-					</div>
+					</div> -->
 				</Hero>
 
 				<img
-					alt="portrait"
-					width="480"
-					height="620"
-					src="/assets/saturn.jpg"
+					alt="Haoran Yu"
+					width="400"
+					height="300"
+					src="/assets/landscape.jpg"
 				/>
 			</header>
 
@@ -56,14 +53,14 @@ const projects = (await getCollection('work'))
 		</div>
 
 		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
+			<section class="section with-background selected-work">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
+					<h3>Selected Works</h3>
 					<p>Take a look below at some of my research papers.</p>
 				</header>
 
 				<div class="gallery">
-					<Grid variant="offset">
+					<Grid variant="compact">
 						{
 							projects.map((project) => (
 								<li>
@@ -74,37 +71,18 @@ const projects = (await getCollection('work'))
 					</Grid>
 				</div>
 
-				<div class="cta">
-					<CallToAction href="/work/">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
-				</div>
 			</section>
 
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>More than science</h3>
+					<h3>Projects</h3>
 					<p>
-                    I am keen on playing the guitar, acoustic or electric. I am currently practice electric guitar.
+						I am developing a python package dedicated to large sample spectral stacking named DEMIVERSE (DiffusE MedIum VisualizER Studying cosmic Evolution). Keep tuned if interested.
 					</p>
 				</header>
-
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
 			</section>
 		</main>
 
-		<ContactCTA />
 	</div>
 </BaseLayout>
 
@@ -121,7 +99,7 @@ const projects = (await getCollection('work'))
 	}
 
 	.hero img {
-		aspect-ratio: 5 / 4;
+		aspect-ratio: 4 / 3;
 		object-fit: cover;
 		object-position: top;
 		border-radius: 1.5rem;
@@ -143,7 +121,7 @@ const projects = (await getCollection('work'))
 		}
 
 		.hero img {
-			aspect-ratio: 3 / 4;
+			aspect-ratio: 4 / 3;
 			border-radius: 4.5rem;
 			object-fit: cover;
 		}
@@ -162,6 +140,12 @@ const projects = (await getCollection('work'))
 
 	.with-background::before {
 		--hero-bg: var(--bg-image-subtle-2);
+		--hero-warm-overlay: linear-gradient(
+			140deg,
+			hsla(218, 88%, 70%, 0.24),
+			hsla(228, 76%, 60%, 0.18) 45%,
+			hsla(238, 68%, 50%, 0.12)
+		);
 
 		content: '';
 		position: absolute;
@@ -174,14 +158,24 @@ const projects = (await getCollection('work'))
 		background:
 			url('/assets/backgrounds/noise.png') top center/220px repeat,
 			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+			var(--hero-warm-overlay) center center / cover no-repeat,
 			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
+		background-blend-mode: overlay, normal, soft-light, normal;
 		mix-blend-mode: var(--bg-blend-mode);
 		z-index: -1;
 	}
 
 	.with-background.bg-variant::before {
 		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	:global(.theme-dark) .with-background::before {
+		--hero-warm-overlay: linear-gradient(
+			140deg,
+			hsla(220, 78%, 58%, 0.18),
+			hsla(230, 70%, 48%, 0.14) 45%,
+			hsla(242, 64%, 40%, 0.1)
+		);
 	}
 
 	.section-header {
@@ -203,10 +197,6 @@ const projects = (await getCollection('work'))
 			gap: 5rem;
 		}
 
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
-
 		.section-header {
 			grid-area: header;
 			font-size: var(--text-lg);
@@ -216,7 +206,7 @@ const projects = (await getCollection('work'))
 			font-size: var(--text-4xl);
 		}
 
-		.with-cta .section-header {
+		.selected-work .section-header {
 			justify-self: flex-start;
 			text-align: left;
 		}
@@ -225,8 +215,8 @@ const projects = (await getCollection('work'))
 			grid-area: gallery;
 		}
 
-		.cta {
-			grid-area: cta;
+		.selected-work .gallery :global(.grid.compact) {
+			gap: 1.5rem;
 		}
 	}
 

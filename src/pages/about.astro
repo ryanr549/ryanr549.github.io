@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 ---
 
@@ -15,49 +14,76 @@ import Hero from '../components/Hero.astro';
 				<img
 					width="1553"
 					height="873"
-					src="/assets/saturn.jpg"
-					alt="just saturn"
+					src="/assets/portrait.png"
+					alt="got a Perca Trucha at Dec 11, 2025 at Puerto Varas, Chile"
 				/>
 			</Hero>
 
 			<section>
-				<h2 class="section-title">Background</h2>
+				<h2 class="section-title">Contact</h2>
 				<div class="content">
-					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
-						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
-					</p>
-					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
-					</p>
-					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
-					</p>
+					<ul class="resume-list">
+						<li><strong>Name:</strong> Haoran Yu</li>
+						<li><strong>Email:</strong> ryanr@mail.ustc.edu.cn</li>
+						<li><strong>Affiliation:</strong> Department of Astronomy, University of Science and Technology of China</li>
+						<li><strong>Website:</strong> ryanr549.github.io</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Research Interests</h2>
+				<div class="content">
+					<p>baryon cycle, feedback, circumgalactic medium, intergalactic medium</p>
 				</div>
 			</section>
 			<section>
 				<h2 class="section-title">Education</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<ul class="resume-list">
+						<li>
+							<strong>Bachelor, Astrophysics</strong><br />
+							University of Science and Technology of China, Hefei, China | 2019 - 2023
+						</li>
+						<li>
+							<strong>PhD, Astrophysics</strong><br />
+							University of Science and Technology of China, Hefei, China | 2023 - present
+						</li>
+					</ul>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title">Selected Publications</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<ul class="resume-list">
+						<li>
+							Lyu, C., Yu, H., Wang, E., et al. (2026),
+							<em>First Statistical Detection of Mg II-traced Cool Gas Outflows with JWST toward Cosmic Dawn</em>,
+							ApJL, 1000(1), L3.
+							<a href="https://doi.org/10.3847/2041-8213/ae48ee">DOI</a>
+							|
+							<a href="https://ui.adsabs.harvard.edu/abs/2026ApJ..1000L...3L">ADS</a>
+						</li>
+						<li>
+							Yu, H., Wang, E., Chen, Z., et al. (2025),
+							<em>Stellar feedback drives the baryon deficiency in low-mass galaxies</em>,
+							arXiv:2512.05584.
+							<a href="https://doi.org/10.48550/arXiv.2512.05584">DOI</a>
+							|
+							<a href="https://ui.adsabs.harvard.edu/abs/2025arXiv251205584Y">ADS</a>
+						</li>
+						<li>
+							Yu, H., Fan, L., Han, Y., Sun, W., Zhang, Y., Ding, X., and Xue, Y. (2025),
+							<em>A New Approach to Constraining Properties of Active Galactic Nucleus Host Galaxies by Combining Image and Spectral Energy Distribution Decomposition: Testing upon the M_BH-M* Relation</em>,
+							ApJ, 978(2), 164.
+							<a href="https://doi.org/10.3847/1538-4357/ad9aa3">DOI</a>
+							|
+							<a href="https://ui.adsabs.harvard.edu/abs/2025ApJ...978..164Y">ADS</a>
+						</li>
+					</ul>
 				</div>
 			</section>
 		</main>
 
-		<ContactCTA />
 	</div>
 </BaseLayout>
 
@@ -89,6 +115,13 @@ import Hero from '../components/Hero.astro';
 
 	.content {
 		grid-column: 2 / 4;
+	}
+
+	.resume-list {
+		margin: 0;
+		padding-inline-start: 1.25rem;
+		display: grid;
+		gap: 0.75rem;
 	}
 
 	.content :global(a) {

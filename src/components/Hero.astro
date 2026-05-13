@@ -3,12 +3,13 @@ interface Props {
 	title: string;
 	tagline?: string;
 	align?: 'start' | 'center';
+	fluidTitle?: boolean;
 }
 
-const { align = 'center', tagline, title } = Astro.props;
+const { align = 'center', tagline, title, fluidTitle = false } = Astro.props;
 ---
 
-<div class:list={['hero stack gap-4', align]}>
+<div class:list={['hero stack gap-4', align, { 'fluid-title': fluidTitle }]}>
 	<div class="stack gap-2">
 		<h1 class="title">{title}</h1>
 		{tagline && <p class="tagline">{tagline}</p>}
@@ -31,6 +32,11 @@ const { align = 'center', tagline, title } = Astro.props;
 	.title {
 		font-size: var(--text-3xl);
 		color: var(--gray-0);
+	}
+
+	.fluid-title .title {
+		font-size: clamp(1.5rem, 7vw, var(--text-3xl));
+		line-height: 1.15;
 	}
 
 	@media (min-width: 50em) {

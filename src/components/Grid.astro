@@ -1,12 +1,12 @@
 ---
 interface Props {
-	variant?: 'offset' | 'small';
+	variant?: 'offset' | 'small' | 'compact';
 }
 
 const { variant } = Astro.props;
 ---
 
-<ul class:list={['grid', { offset: variant === 'offset', small: variant === 'small' }]}>
+<ul class:list={['grid', { offset: variant === 'offset', small: variant === 'small', compact: variant === 'compact' }]}>
 	<slot />
 </ul>
 
@@ -22,6 +22,15 @@ const { variant } = Astro.props;
 	.grid.small {
 		grid-template-columns: 1fr 1fr;
 		gap: 1.5rem;
+	}
+
+	.grid.compact {
+		grid-auto-rows: auto;
+		align-items: start;
+	}
+
+	.grid.compact > :global(*) {
+		align-self: start;
 	}
 
 	/* If last row contains only one item, make it span both columns. */
